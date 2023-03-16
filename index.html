@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <script>
+
+
+        function verify() {
+
+            var pin = prompt("Enter your ATM PIN");
+            if (pin != "1234") {
+
+                alert("Invalid pin. Please try again!");
+                verify();
+
+            }
+
+            alert("Authenticated!");
+            document.getElementById("bal").innerHTML = "100000000000";
+
+        }
+
+        function deposit() {
+            var amount = prompt("How much would you like to deposit?");
+
+            if (amount <= 0)
+
+                alert("Invalid amount. Please try again!");
+
+            else {
+                alert("Transaction successful. ");
+
+                document.getElementById("msg").innerHTML = "$" + amount + " successfully deposited to your account."
+                document.getElementById("bal").innerHTML = parseInt(document.getElementById("bal").innerHTML) + parseInt(amount);
+
+            }
+        }
+
+        function withdraw() {
+            var amount = prompt("How much would you like to withdrawal?");
+
+            //  if(amount = Math.round((numb + Number.EPSILON) * 100) / 100)
+             if (amount <= 100)
+
+                alert("Invalid amount. Please try again!");
+
+            else {
+                alert("Transaction successful. Please take your money now.");
+
+                document.getElementById("msg").innerHTML = "$" + amount + " successfully withdrawn from your account.";
+                document.getElementById("bal").innerHTML = parseInt(document.getElementById("bal").innerHTML) - parseInt(amount);
+
+            }
+        }
+
+        function exit() {
+            var amount = prompt("Would like to make another transaction.Click Cancel to Exit.");
+
+            if (amount) {
+
+                window.close();
+
+            } else {
+                prompt("Have a nice day!");
+            }
+        }
+    </script>
+
+<body onload="alert('Welcome to ATM.! Please Click OK to Continue'); verify()">
+    Message: <span id='msg'></span><br>
+    Your Current Balance $: <span id='bal'></span><br>
+
+
+    <input type="button" value="Deposit" onclick="deposit()" /> &nbsp
+
+    <input type="button" value="Withdraw" onclick="withdraw()" />
+
+    <input type="button" value="EXIT" onclick="exit()" />
+
+</body>
+
+</html>
